@@ -5,6 +5,9 @@ const movieController = {};
 
 const movies = conn.model("Movie", movieSchema);
 
+/**
+ * Retorna la informacion de todas las peliculas
+ */
 movieController.getAllMovies = async (req, res) => {
     try {
         allMovies = await movies.find({}, "-_id")
