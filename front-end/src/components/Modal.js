@@ -16,11 +16,12 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Header>
         <Modal.Body>
           <h4>{props.movieType}</h4>
-          <h3> {props.movieStartTime} </h3>
+          <p> {props.movieBody} </p>
           
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
+          <Button style={{backgroundcolor: "red"}}  onClick={props.onHide}>Comprar Boletos</Button>
         </Modal.Footer>
       </Modal>
     );

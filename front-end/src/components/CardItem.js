@@ -11,7 +11,8 @@ function CardItem(props) {
         show={modalShow}
         onHide={() => setModalShow(false)} 
         movieTitle= {props.text}
-        movieType= {props.label}/>
+        movieType= {props.label}
+        movieBody={props.movieBody}/>
       <li className='cards__item'>
         <label className='cards__item__link' onClick={() => setModalShow(true)} >
           <figure className='cards__item__pic-wrap' data-category={props.label}>

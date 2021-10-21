@@ -17,7 +17,7 @@ function movieSection() {
         >
           Ver películas
         </Button>
-        <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large' onClick={console.log('hey')}  >
+        <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large' >
           Ver Salas
           <i className='far fa-play-circle' />
         </Button>
