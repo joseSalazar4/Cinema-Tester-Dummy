@@ -1,22 +1,17 @@
 const mongoose = require("mongoose");
+const {conn, movieSchema} = require('../public/db')
 
 const movieController = {};
-
-const conn = mongoose.createConnection("mongodb+srv://admin:admin@aseguramientocinemadumm.8u8xk.mongodb.net/CinemaDummy?retryWrites=true&w=majority")
-
-const movieSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    date: String,
-    url: String
-});
 
 const movies = conn.model("Movie", movieSchema);
 
 movieController.getAllMovies = async (req, res) => {
-    const all = await movies.find({});
-    //console.log("all: ", all)
-    return res.json(all)
+    try {
+        allMovies = await movies.find({}, "-_id")
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+    return res.json(allMovies)
 }
 
 module.exports = movieController;
