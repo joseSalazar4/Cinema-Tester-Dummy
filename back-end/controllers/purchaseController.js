@@ -4,11 +4,11 @@ const { conn, movieSchema } = require('../public/db')
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
+var _jade = require('jade');
 
 const purchaseController = {}
 
 const movies = conn.model("Movie", movieSchema);
-
 
 function sendEmail(data) {
     let transporter = nodemailer.createTransport({
@@ -24,14 +24,12 @@ function sendEmail(data) {
         }
     })
 
-    const receiptHTML = fs.readFileSync(path.resolve(__dirname, "../public/receipt.html"));
-
     let mailOptions = {
         from: '"Nodemailer Contact" <cinemaDummyBeast@outlook.com>',
         to: 'esteban13torres@gmail.com',
         subject: 'NodeMailere Test',
         text: 'Hello Worl',
-        html: receiptHTML
+        html: data
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -44,6 +42,30 @@ function sendEmail(data) {
         //Si no falló que edevuelva a la página principal
     })
 }
+
+function createReceipt(data) {
+    var template = process.cwd() + '/views/email.jade';
+
+    // get template from file system
+    return fs.readFile(template, 'utf8', function (err, file) {
+        if (err) {
+            //handle errors
+            console.log('ERROR!');
+            return res.send('ERROR!');
+        }
+        else {
+            //compile jade template into function
+            var compiledTmpl = _jade.compile(file, { filename: template });
+            // set context to be used in template
+            var context = { title: data.title, seats: data.seats };
+            // get html back as a string with the context applied;
+            var html = compiledTmpl(context);
+
+            sendEmail(html)
+        }
+    });
+}
+
 
 /**
  * Retorna la factura en caso de una compra exitosa, retorna error en caso contrario
@@ -94,10 +116,12 @@ purchaseController.buySeats = async (req, res) => {
     }
 
     // Se genera factura
+    data = req.body
+    data.seats = seats.map((elem) => {return elem + 1})
+    createReceipt(data)
 
     // Se envia el correo
-
-    sendEmail("Hola 123");
+    //sendEmail(receipt);
 
     return res.json(updateMovie)
 }
