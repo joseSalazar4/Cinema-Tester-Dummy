@@ -11,10 +11,12 @@
     border: none;
     outline: none;
 } 
-
+*/
 form {
     display: block;
     position: relative;
+    width: 50%;
+    margin-left : 25%;
 }
 
 form:after{
@@ -26,7 +28,7 @@ form:after{
     right: -5px;
     bottom: -5px;
 }
-*/
+
 form .form-inner{
     position: relative;
     display: block;
@@ -35,8 +37,15 @@ form .form-inner{
     z-index: 2;
 }
 
+
+form .form-inner .form-group label{
+    padding-top: 14px;    
+    padding-bottom: 5px;
+}
+
 form .form-inner .form-group input:focus {
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+    padding-bottom: 8px;
 }
 
 form .form-inner input[type="submit"] {

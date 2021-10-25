@@ -29,27 +29,29 @@ function PaymentForm({ SendInfo, info }) {
 
 
 
-    console.log(seatsArray)
+    console.log(seatsArray) 
     return (
         <div className="paymentForm">
+            
             <form onSubmit={submitHandler} >
                 <div className="form-inner">
                     {/* ERROR */}
                     <div className="form-group">
                         <label htmlFor="name">Nombre: </label>
-                        <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
                     </div>
+                        <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
                     <div className="form-group">
                         <label htmlFor="email">Correo Electronico: </label>
-                        <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
                     </div>
+                        <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
                 </div>
-                <h5>Película: {details.movieTitle}</h5>
-                <h5>Asientos seleccionados</h5>
-                {NumberList(seatsArray)}
-                <h5>Total a pagar: {total} colones</h5>
-                <input type="submit" value="Comprar" />
             </form>
+
+            <h5>Película: {details.movieTitle}</h5>
+            <h5>Asientos seleccionados</h5>
+            {NumberList(seatsArray)} 
+            <h5>Total a pagar: {total} colones</h5>
+            <input type="submit" value="Comprar" />
         </div>
     );
 }
