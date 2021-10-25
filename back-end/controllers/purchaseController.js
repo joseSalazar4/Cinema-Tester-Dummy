@@ -10,7 +10,7 @@ const purchaseController = {}
 
 const movies = conn.model("Movie", movieSchema);
 
-function sendEmail(data) {
+function sendEmail(emailHTML, toEmail) {
     let transporter = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
         port: 587,
@@ -26,15 +26,15 @@ function sendEmail(data) {
 
     let mailOptions = {
         from: '"Nodemailer Contact" <cinemaDummyBeast@outlook.com>',
-        to: 'esteban13torres@gmail.com',
+        to: toEmail,
         subject: 'NodeMailere Test',
         text: 'Hello Worl',
-        html: data
+        html: emailHTML
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return console.log(error);
+            return false;
         }
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
@@ -61,7 +61,7 @@ function createReceipt(data) {
             // get html back as a string with the context applied;
             var html = compiledTmpl(context);
 
-            sendEmail(html)
+            sendEmail(html, data.email)
         }
     });
 }
@@ -72,6 +72,7 @@ function createReceipt(data) {
  *
  * @param {array} seats arreglo con los numeros de asientos.
  * @param {string} title nombre de la pelicula.
+ * @param {string} email correo del cliente.
  */
 purchaseController.buySeats = async (req, res) => {
     if (req.body.seats == null || req.body.title == null) { return res.status(500).send("Missing parameters") }
