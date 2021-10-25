@@ -9,7 +9,7 @@ function PaymentForm({ SendInfo, info }) {
     const total = info.total;
 
 
-    const [details, setDetails] = useState({movieTitle: movieTitle, seatsArray: seatsArray, total: total, name:"", email:""});
+    const [details, setDetails] = useState({title: movieTitle, seats: seatsArray, total: total, name:"", email:""});
 
     const submitHandler = e => {
         e.preventDefault();
