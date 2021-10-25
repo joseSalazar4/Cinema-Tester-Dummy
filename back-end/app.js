@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 
 app.use(cors())
 app.use(require('./routes/moviesRouter'));
+app.use(require('./routes/purchaseRouter'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
