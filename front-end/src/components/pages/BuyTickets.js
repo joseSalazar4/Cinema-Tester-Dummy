@@ -12,7 +12,6 @@ const api = axios.create({
 
 export default function BuyTickets() {
   
-
   const seatsArray = [13,14,15];
   const total = seatsArray.length*3000;
 
@@ -21,8 +20,6 @@ export default function BuyTickets() {
     seatsArray : seatsArray,
     total : total
   }
-  
-  
   const [error, setError] = useState("");
 
   const SendInfo = details => {
@@ -30,21 +27,20 @@ export default function BuyTickets() {
 
     // Aca se manda al back por medio de details
 
-    // api.get('/').then(moviesRes => {
-    //   moviesRes.data = moviesRes.data.slice(0, 4)
-    //   setMovies(moviesRes.data);
-    // })
-    //   .catch(() => {
-    //     console.log("Error")
-    //   })
+    api.post('/buy', details)
+    .then(moviesRes => {
+      console.log("compra completada");
+    })
+      .catch(() => {
+        console.log("Error")
+      })
+
+
+
   }
 
-  
-
   return (
-    <div className="Payment">
-        <PaymentForm SendInfo={SendInfo} info={info}  />
-    </div>
+      <PaymentForm SendInfo={SendInfo} info={info}  />
   );
 
 }
