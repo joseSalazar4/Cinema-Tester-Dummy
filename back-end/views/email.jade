@@ -376,7 +376,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
         }
   body
     span.preheader
-      | This is a receipt for your recent purchase on #{title}. No payment is due with this receipt.
+      | Esta es una factura por su compra de asientos para la pelicula #{title}.
     table.email-wrapper(width='100%' cellpadding='0' cellspacing='0' role='presentation')
       tbody
         tr
@@ -398,7 +398,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                             .f-fallback
                               h1 Hola #{name},
                               p
-                                | Gracias por usar CinemaDummy. Esta correo contiene la informacion de su factura.
+                                | Gracias por usar CinemaDummy. Este correo contiene su factura para la pelicula: #{title}.
                               table.purchase(width='100%' cellpadding='0' cellspacing='0' role='presentation')
                                 tbody
                                   tr
@@ -420,20 +420,20 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                                                 td.purchase_item(width='80%')
                                                     span.f-fallback Asiento #{seat}
                                                 td.align-right(width='20%')
-                                                    span.f-fallback 1
+                                                    span.f-fallback 3000
                                           tr
                                             td.purchase_footer(width='80%' valign='middle')
                                               p.f-fallback.purchase_total.purchase_total--label Total
                                             td.purchase_footer(width='20%' valign='middle')
                                               p.f-fallback.purchase_total #{total}
                               p
-                                | If you have any questions about this receipt, simply reply to this email or reach out to our 
-                                a(href='{{support_url}}') support team
-                                |  for help.
+                                | Si tiene una consulta sobre su factura puede responder a este correo o contactar a nuestro 
+                                a(href='{{support_url}}') equipo de soporte
+                                |  por ayuda.
                               p
-                                | Cheers,
+                                | Esperamos disfrute su pelicula,
                                 br
-                                | The [Product Name] Team
+                                | CinemaDummy
                               // Action
                               table.body-action(align='center' width='100%' cellpadding='0' cellspacing='0' role='presentation')
                                 tbody
@@ -453,13 +453,9 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                                   tr
                                     td
                                       p.f-fallback.sub
-                                        strong Need a printable copy for your records?
-                                        |  You can 
-                                        a(href='{{action_url}}') download a PDF version
-                                        | .
-                                      p.f-fallback.sub
-                                        | Moved recently? Have a new credit card? You can easily 
-                                        a(href='{{billing_url}}') update your billing information
+                                        strong ¿Necesita una factura impresa?
+                                        |  Puede 
+                                        a(href='{{action_url}}') descargar la version en PDF
                                         | .
                 tr
                   td
@@ -467,10 +463,10 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       tbody
                         tr
                           td.content-cell(align='center')
-                            p.f-fallback.sub.align-center © 2021 [Product Name]. All rights reserved.
+                            p.f-fallback.sub.align-center © 2021 CinemaDummy. All rights reserved.
                             p.f-fallback.sub.align-center
-                              | [Company Name, LLC]
+                              | CinemaDummy
                               br
-                              | 1234 Street Rd.
+                              | Cartago
                               br
-                              | Suite 1234
+                              | Costa Rica

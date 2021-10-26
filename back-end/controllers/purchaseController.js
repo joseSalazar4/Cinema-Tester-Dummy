@@ -27,43 +27,39 @@ function sendEmail(emailHTML, toEmail) {
     let mailOptions = {
         from: '"Nodemailer Contact" <cinemaDummyBeast@outlook.com>',
         to: toEmail,
-        subject: 'NodeMailere Test',
-        text: 'Hello Worl',
+        subject: 'Factura. ' + data.title,
+        text: 'Factura',
         html: emailHTML
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
+            console.log(error)
             return false;
         }
+        /*
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
-
-        //Si no falló que edevuelva a la página principal
+        */
     })
 }
 
 function createReceipt(data) {
     var template = process.cwd() + '/views/email.jade';
 
-    // get template from file system
-    return fs.readFile(template, 'utf8', function (err, file) {
-        if (err) {
-            //handle errors
-            console.log('ERROR!');
-            return res.send('ERROR!');
-        }
-        else {
-            //compile jade template into function
-            var compiledTmpl = _jade.compile(file, { filename: template });
-            // set context to be used in template
-            var context = { title: data.title, seats: data.seats };
-            // get html back as a string with the context applied;
-            var html = compiledTmpl(context);
-
-            sendEmail(html, data.email)
-        }
-    });
+    try {
+        let file = fs.readFileSync(template, 'utf-8')
+        //compile jade template into function
+        var compiledTmpl = _jade.compile(file, { filename: template });
+        // set context to be used in template
+        var context = { title: data.title, seats: data.seats, name: data.name, total: data.total };
+        // get html back as a string with the context applied;
+        htmlReceipt = compiledTmpl(context);
+        return htmlReceipt
+    } catch (error) {
+        console.log(error)
+        return null
+    }
 }
 
 
@@ -73,14 +69,16 @@ function createReceipt(data) {
  * @param {array} seats arreglo con los numeros de asientos.
  * @param {string} title nombre de la pelicula.
  * @param {string} email correo del cliente.
+ * @param {string} name Nombre del cliente.
+ * @param {number} total precio total.
  */
 purchaseController.buySeats = async (req, res) => {
-    if (req.body.seats == null || req.body.title == null) { return res.status(500).send("Missing parameters") }
+    if (req.body.seats == null || req.body.title == null || req.body.email == null 
+        || req.body.name == null || req.body.total == null) { return res.status(500).send("Missing parameters") }
     let seats = req.body.seats;
     let movieName = req.body.title
     let movieInfo;
     let unmodifiedSeats;
-
     // Se obtiene la pelicula
     try {
         movieInfo = await movies.findOne({ title: movieName }, "-_id")
@@ -90,7 +88,7 @@ purchaseController.buySeats = async (req, res) => {
         unmodifiedSeats = [...movieInfo.seats]
     } catch (err) {
         console.log(err)
-        return res.status(500).send(err);
+        return res.status(500).send("Pelicula no encontrada");
     }
 
     // Se verifican los asientos
@@ -113,18 +111,25 @@ purchaseController.buySeats = async (req, res) => {
             return res.status(500).send("Error actualizando asientos");
         }
     } catch (err) {
-        return res.status(500).send(err);
+        return res.status(500).send("Error actualizando asientos");
     }
-
+    //console.log(unmodifiedSeats)
+    //console.log(seats)
+    
     // Se genera factura
     data = req.body
-    data.seats = seats.map((elem) => {return elem + 1})
-    createReceipt(data)
+    data.seats = seats.map((elem) => { return elem + 1 })
+    let htmlReceipt = createReceipt(data)
 
     // Se envia el correo
-    //sendEmail(receipt);
+    if (htmlReceipt) {
+        sendEmail(htmlReceipt, req.body.email);
+    } else {
+        return res.send("Compra exitosa. Error creando factura")
+    }
 
-    return res.json(updateMovie)
+    
+    return res.send("Compra exitosa")
 }
 
 module.exports = purchaseController
