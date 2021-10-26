@@ -1,7 +1,18 @@
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import Seats from './pages/Seats';
+import { Link } from 'react-router-dom';
+
 function MyVerticallyCenteredModal(props) {
+
+  const newTo = { 
+    pathname: "/seats", 
+    param1: props.movieTitle,
+    param2: props.seats
+  };
+
+
     return (
       <Modal
         {...props}
@@ -21,7 +32,14 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
-          <Button style={{backgroundcolor: "red"}}  onClick={props.onHide}>Comprar Boletos</Button>
+          <Link style={{backgroundcolor: "red"}}  
+          to={{
+            pathname: "/seats",
+            state: {
+              title: props.movieTitle,
+              seats: props.seats
+            }
+          }}>Comprar Boletos</Link>
         </Modal.Footer>
       </Modal>
     );
