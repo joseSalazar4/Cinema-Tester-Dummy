@@ -70,16 +70,15 @@ function createReceipt(data) {
  * @param {string} title nombre de la pelicula.
  * @param {string} email correo del cliente.
  * @param {string} name Nombre del cliente.
- * @param {string} email correo del cliente.
  * @param {number} total precio total.
  */
 purchaseController.buySeats = async (req, res) => {
-    if (req.body.seats == null || req.body.title == null) { return res.status(500).send("Missing parameters") }
+    if (req.body.seats == null || req.body.title == null || req.body.email == null 
+        || req.body.name == null || req.body.total == null) { return res.status(500).send("Missing parameters") }
     let seats = req.body.seats;
     let movieName = req.body.title
     let movieInfo;
     let unmodifiedSeats;
-
     // Se obtiene la pelicula
     try {
         movieInfo = await movies.findOne({ title: movieName }, "-_id")
@@ -114,7 +113,9 @@ purchaseController.buySeats = async (req, res) => {
     } catch (err) {
         return res.status(500).send("Error actualizando asientos");
     }
-
+    //console.log(unmodifiedSeats)
+    //console.log(seats)
+    
     // Se genera factura
     data = req.body
     data.seats = seats.map((elem) => { return elem + 1 })
@@ -126,8 +127,8 @@ purchaseController.buySeats = async (req, res) => {
     } else {
         return res.send("Compra exitosa. Error creando factura")
     }
-    
 
+    
     return res.send("Compra exitosa")
 }
 
