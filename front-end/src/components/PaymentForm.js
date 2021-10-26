@@ -16,20 +16,19 @@ function PaymentForm({ SendInfo, info }) {
 
     }
 
-    // function NumberList(props) {
-    //     const numbers = props;
-    //     const listItems = numbers.map((number) =>
-    //       <li>Asiento: {number}</li>
-    //     );
-    //     return (
-    //       <ul>{listItems}</ul>
-    //     );
-    //   }
+    function NumberList(props) {
+        const numbers = props;
+        const listItems = numbers.map((number) =>
+          <li>Asiento: {(number*1+1)}</li>
+        );
+        return (
+          <ul>{listItems}</ul>
+        );
+      }
 
     return (
         <form onSubmit={submitHandler} >
             <div className="form-inner">
-                {/* ERROR */}
                 <div className="form-group">
                     <label htmlFor="name">Nombre: </label>
                     <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
@@ -38,13 +37,16 @@ function PaymentForm({ SendInfo, info }) {
                     <label htmlFor="email">Correo Electronico: </label>
                     <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
                 </div>
+             
+                <div className="detalles">
+                    <h4>Detalles de la compra</h4>
+                    <h5>Nombre: {details.title}</h5>
+                    <h5>Asientos seleccionados</h5>
+                    {NumberList(seatsArray)}
+                    <h5>Total a pagar: {total} colones</h5>
+                </div>
+            <input type="submit" value="Pagar"/>
             </div>
-            <input type="submit" value="Comprar" />
-            {/* <h5>Película: {details.movieTitle}</h5>
-            <h5>Asientos seleccionados</h5>
-            {NumberList(seatsArray)}
-            <h5>Total a pagar: {total} colones</h5> */}
-            
         </form>
     );
 }

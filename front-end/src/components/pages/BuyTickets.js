@@ -6,17 +6,19 @@ import axios from 'axios'
 
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001/movies'
+  baseURL: 'http://localhost:3001'
 })
 
 
-export default function BuyTickets() {
+export default function BuyTickets(props) {
   
-  const seatsArray = [13,14,15];
+
+  const movieTitle = props.location.state.title;
+  const seatsArray = props.location.state.seats
   const total = seatsArray.length*3000;
 
   const info = {
-    movieTitle : "StarWars",
+    movieTitle : movieTitle,
     seatsArray : seatsArray,
     total : total
   }
@@ -34,9 +36,6 @@ export default function BuyTickets() {
       .catch(() => {
         console.log("Error")
       })
-
-
-
   }
 
   return (
@@ -45,11 +44,3 @@ export default function BuyTickets() {
 
 }
 
-/* {(user.email != "") ? (
-    <div className="welcome">
-        <h2>Welcome, <span>{user.name}</span></h2>
-        <button>logout</button>
-    </div>
-) : (
-  <PaymentForm Login={sendData} error={error} />
-)} */

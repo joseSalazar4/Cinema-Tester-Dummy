@@ -32,7 +32,7 @@ form:after{
 form .form-inner{
     position: relative;
     display: block;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     padding: 30px;
     z-index: 2;
 }
