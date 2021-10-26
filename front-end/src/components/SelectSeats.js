@@ -1,17 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./SelectSeats.css";
 
 function selectSeats({ pMovieTitle, pSeatsReserved }) {
   const title = pMovieTitle;
   const seatsReserved = pSeatsReserved;
 
+  let selectedSeats = [];
+  var selectedCount = 0;
+
   console.log(title);
   console.log(seatsReserved);
 
-  function reserveSeat(props,id){
-    props[id] = 2;
-    console.log("fiumba")
-    console.log(id);
+
+  function updateSeats(e) {
+    if(e.currentTarget.class !== "seat occupied")
+    {
+      e.currentTarget.class = "seat occupied";
+      e.currentTarget.style = "background-color: #6feaf6";
+      selectedSeats.push(e.currentTarget.id);
+      selectedCount= selectedSeats.length;
+    }
+    else{
+      e.currentTarget.class = "seat";
+      e.currentTarget.style = "background-color: #444451";
+      selectedSeats.pop(e.currentTarget.id);
+      selectedCount= selectedSeats.length;
+    }
+    
   }
 
   function fillReservedSeats(props) {
@@ -20,10 +36,8 @@ function selectSeats({ pMovieTitle, pSeatsReserved }) {
      
       if (number === 1) {
         row.push(<div class="seat occupied" id={index}>{(index+1)}</div>);
-      } else if(number === 0) {
-        row.push(<div class="seat" id={index} onClick={reserveSeat(props,index)}>{(index+1)}</div>);
-      }else{
-        row.push(<div class="seat selected" id={index}>{(index+1)}</div>);
+      } else{
+        row.push(<div class="seat" id={index} onClick={(e) => updateSeats(e)}>{(index+1)}</div>);
       }
     
       if ((index+1)% 8 === 0) {
@@ -40,8 +54,20 @@ function selectSeats({ pMovieTitle, pSeatsReserved }) {
 
   return (
     <div className="selectSeats">
+      <h1 className="title">{title}</h1>
+
       {fillReservedSeats(seatsReserved)}
+
+      <Link style={{backgroundcolor: "red"}}  
+          to={{
+            pathname: "/buyTickets",
+            state: {
+              title: title,
+              seats: selectedSeats
+            }
+          }}>Comprar Boletos</Link>
     </div>
+    
       
   );
 }

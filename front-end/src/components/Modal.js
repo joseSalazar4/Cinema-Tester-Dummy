@@ -6,12 +6,6 @@ import { Link } from 'react-router-dom';
 
 function MyVerticallyCenteredModal(props) {
 
-  const newTo = { 
-    pathname: "/seats", 
-    param1: props.movieTitle,
-    param2: props.seats
-  };
-
 
     return (
       <Modal
@@ -39,7 +33,7 @@ function MyVerticallyCenteredModal(props) {
               title: props.movieTitle,
               seats: props.seats
             }
-          }}>Comprar Boletos</Link>
+          }}>Seleccionar Asientos</Link>
         </Modal.Footer>
       </Modal>
     );
