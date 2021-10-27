@@ -16,7 +16,6 @@ function Cards() {
 
   function getMovies() {
     api.get('/').then(moviesRes => {
-      moviesRes.data = moviesRes.data.slice(0, 4)
       setMovies(moviesRes.data);
     })
       .catch(() => {
@@ -33,11 +32,7 @@ function Cards() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             {moviesItems}
-          </ul>
-
-          <ul className='cards__items'>
-            {moviesItems}
-          </ul>          
+          </ul>           
         </div>
       </div>
     </div>
