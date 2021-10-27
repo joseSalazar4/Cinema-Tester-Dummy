@@ -1,5 +1,5 @@
 .cards {
-  padding: 4rem;
+  padding: 2rem;
   background: #fff;
 }
 
@@ -12,7 +12,7 @@ h1 {
   flex-flow: column;
   align-items: center;
   max-width: 1120px;
-  width: 90%;
+  width: 120%;
   margin: 0 auto;
 }
 
@@ -23,6 +23,8 @@ h1 {
 
 .cards__items {
   margin-bottom: 24px;
+  width: 2000px;
+  align-items: center;
 }
 
 .cards__item {

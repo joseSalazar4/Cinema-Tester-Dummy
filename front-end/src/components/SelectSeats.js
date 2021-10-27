@@ -9,10 +9,6 @@ function SelectSeats({ pMovieTitle, pSeatsReserved }) {
 
   //let selectedSeats = [];
 
-  console.log(title);
-  console.log(seatsReserved);
-
-
   function updateSeats(e) {
     console.log(e.currentTarget.id)
     if (e.currentTarget.class !== "seat occupied") {

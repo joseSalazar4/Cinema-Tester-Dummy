@@ -60,7 +60,7 @@ function PaymentForm({ SendInfo, info }) {
                         {NumberList(seatsArray)}
                         <h5>Total a pagar: {total} colones</h5>
                     </div>
-                    <input type="submit" disabled={!validEmail} value="Pagar"/>
+                    <input type="submit" disabled={!validEmail} value="Reservar"/>
                 </div>
             </form>
         </div>

@@ -9,6 +9,7 @@ const api = axios.create({
 
 function Cards() {
   const [movies, setMovies] = useState([]);
+  const [movies2, setMovies2] = useState([]);
 
   useEffect(() => {
     getMovies();
@@ -16,27 +17,27 @@ function Cards() {
 
   function getMovies() {
     api.get('/').then(moviesRes => {
-      moviesRes.data = moviesRes.data.slice(0, 4)
-      setMovies(moviesRes.data);
+      let moviesLen = moviesRes.data.length;
+      setMovies(moviesRes.data.slice(0,moviesLen/2));
+      setMovies2(moviesRes.data.slice(moviesLen/2, moviesLen));
     })
       .catch(() => {
         console.log("Error")
       })
   }
-
   const moviesItems = movies.map(movie => <CardItem key={movie.title} src={movie.url} text={movie.title} label='Acción/Sci-Fi' movieBody={movie.description} seats={movie.seats}/>)
+  const moviesItems2 = movies2.map(movie => <CardItem key={movie.title} src={movie.url} text={movie.title} label='Acción/Sci-Fi' movieBody={movie.description} seats={movie.seats}/>)
 
   return (
     <div className='cards'>
-      <h1>Vea estas peliculas!</h1>
+      <h1>Catálogo de películas</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             {moviesItems}
           </ul>
-
           <ul className='cards__items'>
-            {moviesItems}
+            {moviesItems2}
           </ul>          
         </div>
       </div>
