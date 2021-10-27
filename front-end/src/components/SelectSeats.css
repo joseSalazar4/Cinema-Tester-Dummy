@@ -9,6 +9,7 @@
   background-color: #242333;
   flex-direction: column;
   color: white;
+  
   align-items: center;
   justify-content: center; 
   height: 100vh;
@@ -26,6 +27,7 @@
   height: 62px;
   width: 65px;
   margin: 5px;
+  
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
