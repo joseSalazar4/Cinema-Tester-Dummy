@@ -28,7 +28,7 @@ function Cards() {
 
   return (
     <div className='cards'>
-      <h1>Vea estas peliculas!</h1>
+      <h1>Catálogo de películas</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
