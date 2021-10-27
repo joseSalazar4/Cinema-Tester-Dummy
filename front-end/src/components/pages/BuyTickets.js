@@ -32,9 +32,10 @@ export default function BuyTickets(props) {
     api.post('/buy', details)
     .then(moviesRes => {
       console.log("compra completada");
+      alert(moviesRes.data)
     })
-      .catch(() => {
-        console.log("Error")
+      .catch((err) => {
+        alert("Error realizando compra")
       })
   }
 
