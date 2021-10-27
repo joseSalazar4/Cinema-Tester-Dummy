@@ -18,13 +18,13 @@ function selectSeats({ pMovieTitle, pSeatsReserved }) {
     {
       e.currentTarget.class = "seat occupied";
       e.currentTarget.style = "background-color: #6feaf6";
-      selectedSeats.push(e.currentTarget.id);
+      selectedSeats.push(parseInt(e.currentTarget.id, 10));
       selectedCount= selectedSeats.length;
     }
     else{
       e.currentTarget.class = "seat";
       e.currentTarget.style = "background-color: #444451";
-      selectedSeats.pop(e.currentTarget.id);
+      selectedSeats.pop(parseInt(e.currentTarget.id, 10));
       selectedCount= selectedSeats.length;
     }
     
@@ -58,7 +58,7 @@ function selectSeats({ pMovieTitle, pSeatsReserved }) {
 
       {fillReservedSeats(seatsReserved)}
 
-      <Link style={{backgroundcolor: "red"}}  
+      <Link className="buy"  
           to={{
             pathname: "/buyTickets",
             state: {

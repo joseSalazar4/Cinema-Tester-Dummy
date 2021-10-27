@@ -27,27 +27,34 @@ function PaymentForm({ SendInfo, info }) {
       }
 
     return (
-        <form onSubmit={submitHandler} >
-            <div className="form-inner">
-                <div className="form-group">
-                    <label htmlFor="name">Nombre: </label>
-                    <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+        <div className="payment">
+            <form onSubmit={submitHandler} >
+                <div className="form-inner">
+                    <div className="form-group">
+                        <h5 className="name">Nombre:</h5>
+                        <div>
+                        <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <h5 className="name">Correo Electronico:</h5>
+                        <div>
+                        <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
+                        </div>               
+                    </div>
+
+                    
+                    <div className="detalles">
+                        <h4 className="td">Detalles de la compra</h4>
+                        <h5 className="nd">{details.title}</h5>
+                        <h5 className="ad">Asientos seleccionados</h5>
+                        {NumberList(seatsArray)}
+                        <h5>Total a pagar: {total} colones</h5>
+                    </div>
+                <input type="submit" value="Pagar"/>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="email">Correo Electronico: </label>
-                    <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
-                </div>
-             
-                <div className="detalles">
-                    <h4>Detalles de la compra</h4>
-                    <h5>Nombre: {details.title}</h5>
-                    <h5>Asientos seleccionados</h5>
-                    {NumberList(seatsArray)}
-                    <h5>Total a pagar: {total} colones</h5>
-                </div>
-            <input type="submit" value="Pagar"/>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
   

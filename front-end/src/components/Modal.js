@@ -18,14 +18,14 @@ function MyVerticallyCenteredModal(props) {
             
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <h4 style={{color: "#FFF"}}> {props.movieType}</h4>
-          <p  style={{color: "#FFF"}} > {props.movieBody} </p>
+        <Modal.Body style={{color: "black"}}>
+          <h4> {props.movieType}</h4>
+          <p> {props.movieBody} </p>
           
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
-          <Link style={{backgroundcolor: "red"}}  
+          <Link
           to={{
             pathname: "/seats",
             state: {

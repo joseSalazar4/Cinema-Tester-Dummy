@@ -30,6 +30,7 @@ h1 {
   flex: 1;
   margin: 0 1rem;
   border-radius: 10px;
+  color: black;
 }
 
 .cards__item__link {
@@ -92,10 +93,11 @@ h1 {
 
 .cards__item__info {
   padding: 20px 30px 30px;
+  color: black;
 }
 
 .cards__item__text {
-  color: #252e48;
+  color:black;;
   font-size: 18px;
   line-height: 24px;
 }
