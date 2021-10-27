@@ -9,11 +9,20 @@ function PaymentForm({ SendInfo, info }) {
     const total = info.total;
 
     const [details, setDetails] = useState({title: movieTitle, seats: seatsArray, total: total, name:"", email:""});
+    const [validEmail, setValidEmail] = useState(false)
 
     const submitHandler = e => {
         e.preventDefault();
         SendInfo(details);
 
+    }
+
+    function validateEmail(email) { 
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let valid = re.test(String(email).toLowerCase())
+        setDetails({...details, email: email})
+        setValidEmail(valid)
+        console.log(valid)
     }
 
     function NumberList(props) {
@@ -39,7 +48,7 @@ function PaymentForm({ SendInfo, info }) {
                     <div className="form-group">
                         <h5 className="name">Correo Electronico:</h5>
                         <div>
-                        <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
+                        <input type="email" name="email" id="email" onChange={e => validateEmail(e.target.value)} value={details.email}/>
                         </div>               
                     </div>
 
@@ -51,7 +60,7 @@ function PaymentForm({ SendInfo, info }) {
                         {NumberList(seatsArray)}
                         <h5>Total a pagar: {total} colones</h5>
                     </div>
-                <input type="submit" value="Reservar"/>
+                    <input type="submit" disabled={!validEmail} value="Reservar"/>
                 </div>
             </form>
         </div>

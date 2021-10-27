@@ -22,9 +22,8 @@ function Cards() {
         console.log("Error")
       })
   }
-
   const moviesItems = movies.map(movie => <CardItem key={movie.title} src={movie.url} text={movie.title} label='Acción/Sci-Fi' movieBody={movie.description} seats={movie.seats}/>)
-
+ 
   return (
     <div className='cards'>
       <h1>Catálogo de películas</h1>
@@ -32,7 +31,7 @@ function Cards() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             {moviesItems}
-          </ul>           
+          </ul> 
         </div>
       </div>
     </div>
