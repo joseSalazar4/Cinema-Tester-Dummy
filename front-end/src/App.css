@@ -5,39 +5,8 @@
   font-family: 'PT Sans', sans-serif;
 }
 
-.home,
-.services,
-.products,
-.sign-up {
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
-.services {
-  background-image: url('https://img.pixers.pics/pho_wat(s3:700/FO/57/40/61/03/700_FO57406103_f13f48a1d2dd603a6e0b36d0e8a6a205.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/wall-murals-fire-alphabet-letter-a.jpg.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
 
-.products {
-  background-image: url('https://i.blogs.es/0d81df/sdcc18-tcw-poster/1366_2000.jpg');
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
 
-.sign-up {
-  background-image: url('https://img.pixers.pics/pho_wat(s3:700/FO/57/40/61/03/700_FO57406103_f13f48a1d2dd603a6e0b36d0e8a6a205.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/wall-murals-fire-alphabet-letter-a.jpg.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
+
+
+

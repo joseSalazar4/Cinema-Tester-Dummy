@@ -24,7 +24,7 @@ function Cards() {
       })
   }
 
-  const moviesItems = movies.map(movie => <CardItem key={movie.title} src={movie.url} text={movie.title} label='Acción/Sci-Fi' movieBody={movie.description}/>)
+  const moviesItems = movies.map(movie => <CardItem key={movie.title} src={movie.url} text={movie.title} label='Acción/Sci-Fi' movieBody={movie.description} seats={movie.seats}/>)
 
   return (
     <div className='cards'>
